@@ -1,0 +1,14 @@
+# Single-service deployment on Render.com
+services:
+  - type: web
+    name: packsleuthy
+    runtime: python
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: ALLOW_ALL_ORIGINS
+        value: "1"
+      - key: PYTHON_VERSION
+        value: "3.12"
+    healthCheckPath: /api/health
